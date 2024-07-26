@@ -20,7 +20,7 @@ class Commendation(BaseModel):
     cmd_leader: int
 
 
-class AccountProfile(BaseModel):
+class Profile(BaseModel):
     account_id: int
     ongoingmatch: None
     global_stats: None
@@ -38,4 +38,4 @@ class AccountProfile(BaseModel):
 
 
 class PlayerProfile(BaseModel):
-    account_profiles: list[AccountProfile]
+    account_profiles: list[Profile]
