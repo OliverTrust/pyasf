@@ -49,3 +49,10 @@ class Command:
         if "resumed" in result:
             return True
         return False
+
+    def privacy(self, profile: int = 3, owned_games: int = 3, play_time: int = 3, friends_list: int = 3, inventory: int = 3, inventory_gifts: int = 3, comments: int = 3) -> bool:
+        res = self._api.command(f"Privacy {self.login} {profile}, {owned_games}, {play_time}, {friends_list}, {inventory}, {inventory_gifts}, {comments}")
+        result = validate(res, str).result
+        if "Success" in result:
+            return True
+        return False
