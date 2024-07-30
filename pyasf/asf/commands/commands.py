@@ -56,3 +56,10 @@ class Command:
         if "Success" in result:
             return True
         return False
+
+    def twofaok(self) -> bool:
+        res = self._api.command(f"2faok {self.login}")
+        result = validate(res, str).result
+        if "Successfully" in result:
+            return True
+        return False
