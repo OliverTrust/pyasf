@@ -27,3 +27,10 @@ class Command:
         if "done" in result:
             return True
         return False
+
+    def CraftBadge(self) -> bool:
+        res = self._api.command(f"CRAFTBADGE {self.login}")
+        result = validate(res, str).result
+        if "successful" in result:
+            return True
+        return False
