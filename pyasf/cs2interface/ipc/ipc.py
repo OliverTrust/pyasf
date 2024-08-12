@@ -1,4 +1,4 @@
-from pyasf import API, validate
+from pyasf import API, Response
 from .models.player_profile import PlayerProfile
 
 
@@ -9,15 +9,21 @@ class IPC:
         self._api = api
         self.login = login
 
-    def start(self) -> None:
+    def start(self) -> bool:
         path = f"{self._api_path}/{self.login}/Start"
-        self._api.request("GET", path, None)
+        res = self._api.request("GET", path, None)
+        if res.status_code == 200:
+            return True
+        return False
 
-    def stop(self) -> None:
+    def stop(self) -> bool:
         path = f"{self._api_path}/{self.login}/Stop"
-        self._api.request("GET", path, None)
+        res = self._api.request("GET", path, None)
+        if res.status_code == 200:
+            return True
+        return False
 
-    def playerprofile(self, id64: int | str) -> PlayerProfile:
+    def player_profile(self, id64: int | str) -> PlayerProfile:
         path = f"{self._api_path}/{self.login}/PlayerProfile/{id64}"
         res = self._api.request("GET", path, None)
-        return validate(res, PlayerProfile).result
+        return Response[PlayerProfile](**res.json()).result

@@ -1,4 +1,4 @@
-from pyasf import API, validate
+from pyasf import API, Response
 
 
 class Command:
@@ -6,31 +6,31 @@ class Command:
         self._api = api
         self.login = login
 
-    def cartreset(self) -> bool:
-        res = self._api.command(f"CARTRESET {self.login}")
-        result = validate(res, str).result
+    def cart_reset(self) -> bool:
+        res = self._api.command(f"CartReset {self.login}")
+        result = Response[str](**res.json()).result
         if "Success" in result:
             return True
         return False
 
-    def addcart(self, name: str) -> bool:
+    def add_cart(self, name: str) -> bool:
         # s/1234, b/1234
-        res = self._api.command(f"ADDCART {self.login} {name}")
-        result = validate(res, str).result
+        res = self._api.command(f"AddCart {self.login} {name}")
+        result = Response[str](**res.json()).result
         if "√" in result:
             return True
         return False
 
     def purchase(self) -> bool:
-        res = self._api.command(f"PURCHASE {self.login}")
-        result = validate(res, str).result
+        res = self._api.command(f"Purchase {self.login}")
+        result = Response[str](**res.json()).result
         if "done" in result:
             return True
         return False
 
-    def CraftBadge(self) -> bool:
-        res = self._api.command(f"CRAFTBADGE {self.login}")
-        result = validate(res, str).result
+    def craft_badge(self) -> bool:
+        res = self._api.command(f"CraftBadge {self.login}")
+        result = Response[str](**res.json()).result
         if "successful" in result:
             return True
         return False
