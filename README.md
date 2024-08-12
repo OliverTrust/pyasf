@@ -50,7 +50,7 @@ login = "GabeNewell"
 api = API(ipc)
 command = Command(api, login)
 
-command.addcart("s/645485") # bool True
+command.add_cart("s/645485") # bool True
 command.purchase() # bool True
 ```
 
@@ -66,6 +66,6 @@ api = API(ipc)
 interface = IPC(api, login)
 
 interface.start() # start cs2 game coordinator
-profile = interface.playerprofile(76561199059082632)
+profile = interface.player_profile(76561199059082632)
 print(profile)  # obj account_profiles=[AccountProfile(account_id=1098816904, ongoingmatch=None, global_stats=None, ranking=None, commendation=None, medals=Medals(display_items_defidx=[4906, 996], featured_display_item_defidx=4906), my_current_event=None, my_current_event_teams=[], my_current_team=None, my_current_event_stages=[], activity=None, player_level=18, player_cur_xp=327680155, rankings=[Ranking(account_id=1098816904, rank_id=2, wins=39, rank_type_id=7, per_map_rank=[])])]
 ```
