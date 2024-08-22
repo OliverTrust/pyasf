@@ -2,7 +2,7 @@ import re
 
 from pyasf import API, Response
 from .models.balance import Balance
-from .models.licenses import Licenses
+from .models.licenses import License, Licenses
 
 
 class Command:
@@ -78,7 +78,7 @@ class Command:
             return True
         return False
 
-    def licenses(self) -> Licenses.licenses:
+    def licenses(self) -> list[License]:
         res = self._api.command(f"Licenses {self.login}")
         return Response[Licenses](**res.json()).result.licenses
 
