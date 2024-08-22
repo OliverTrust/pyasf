@@ -81,3 +81,10 @@ class Command:
     def licenses(self) -> Licenses.licenses:
         res = self._api.command(f"Licenses {self.login}")
         return Response[Licenses](**res.json()).result.licenses
+
+    def owns(self, game: str) -> int | None:
+        """Return app id"""
+        res = self._api.command(f"owns {self.login} {game}")
+        result = Response[str](**res.json()).result
+        match = re.search(r"app/(\d+)", result)
+        return match.group(1) if match else None
