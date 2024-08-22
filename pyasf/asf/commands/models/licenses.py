@@ -12,7 +12,7 @@ class LicenseType(Enum):
 
 class License(BaseModel):
     type: LicenseType
-    names: list[str]
+    games: list[str]
 
 
 class Licenses(BaseModel):
@@ -24,10 +24,10 @@ class Licenses(BaseModel):
     ) -> list[License]:
         licenses = []
         for license_type in license_types:
-            names = [line[1] for line in lines if line[0] == license_type]
-            if not names:
+            games = [line[1] for line in lines if line[0] == license_type]
+            if not games:
                 continue
-            licenses.append(License(type=LicenseType(license_type), names=names))
+            licenses.append(License(type=LicenseType(license_type), games=games))
         return licenses
 
     @classmethod
