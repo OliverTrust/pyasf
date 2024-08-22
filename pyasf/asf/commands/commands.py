@@ -78,6 +78,6 @@ class Command:
             return True
         return False
 
-    def licenses(self) -> Licenses:
+    def licenses(self) -> Licenses.licenses:
         res = self._api.command(f"Licenses {self.login}")
-        return Response[Licenses](**res.json()).result
+        return Response[Licenses](**res.json()).result.licenses

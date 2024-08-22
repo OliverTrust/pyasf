@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "pyasf"
-version = "0.2.10"
+version = "0.2.11"
 description = ""
-authors = ["OliverTrust <letsfunbox@gmail.com>"]
+authors = ["OliverTrust"]
 readme = "README.md"
 packages = [{ include = "pyasf" }]
 
