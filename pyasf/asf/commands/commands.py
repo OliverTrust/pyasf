@@ -2,6 +2,7 @@ import re
 
 from pyasf import API, Response
 from .models.balance import Balance
+from .models.licenses import Licenses
 
 
 class Command:
@@ -76,3 +77,7 @@ class Command:
         if "Successfully" in result:
             return True
         return False
+
+    def licenses(self) -> Licenses:
+        res = self._api.command(f"Licenses {self.login}")
+        return Response[Licenses](**res.json()).result
