@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyasf"
-version = "0.2.13"
+version = "0.2.14"
 description = ""
 authors = ["OliverTrust"]
 readme = "README.md"
