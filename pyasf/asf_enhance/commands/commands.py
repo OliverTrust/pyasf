@@ -43,6 +43,13 @@ class Command:
             return True
         return False
 
+    def join_group(self, url: str) -> bool:
+        res = self._api.command(f"JoinGroup {self.login} {url}")
+        result = Response[str](**res.json()).result
+        if "Applied" in result:
+            return True
+        return False
+
     def cookies(self) -> Cookies:
         res = self._api.command(f"Cookies {self.login}")
         return Response[Cookies](**res.json()).result
