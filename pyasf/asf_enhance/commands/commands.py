@@ -1,4 +1,5 @@
 from pyasf import API, Response
+from pyasf.asf_enhance.models.cookies import Cookies
 
 
 class Command:
@@ -41,3 +42,7 @@ class Command:
         if "successful" in result:
             return True
         return False
+
+    def cookies(self) -> Cookies:
+        res = self._api.command(f"Cookies {self.login}")
+        return Response[Cookies](**res.json()).result
