@@ -34,3 +34,10 @@ class Command:
         if "successful" in result:
             return True
         return False
+
+    def add_friend(self, text: str) -> bool:
+        res = self._api.command(f"AddFriend {self.login} {text}")
+        result = Response[str](**res.json()).result
+        if "successful" in result:
+            return True
+        return False
